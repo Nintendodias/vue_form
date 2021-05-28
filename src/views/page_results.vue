@@ -1,52 +1,40 @@
 <template>
-  <section class="section section--form">
-    <b-alert show>Default Alert</b-alert>
-
-    <b-alert variant="success" show>Success Alert</b-alert>
-
-    <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
-      Dismissible Alert!
-    </b-alert>
-
-    <b-alert
-      :show="dismissCountDown"
-      dismissible
-      variant="warning"
-      @dismissed="dismissCountDown = 0"
-      @dismiss-count-down="countDownChanged"
-    >
-      <p>This alert will dismiss after {{ dismissCountDown }} seconds...</p>
-      <b-progress
-        variant="warning"
-        :max="dismissSecs"
-        :value="dismissCountDown"
-        height="4px"
-      ></b-progress>
-    </b-alert>
-    <b-button @click="showAlert" variant="info" class="m-1">
-      Show alert with count-down timer
-    </b-button>
-    <b-button @click="showDismissibleAlert = true" variant="info" class="m-1">
-      Show dismissible alert ({{ showDismissibleAlert ? "visible" : "hidden" }})
-    </b-button>
+  <section class="section section--result">
+    <div class="result__container">
+      <h4 class="result__text">Вы успешно записаны на прием!</h4>
+    </div>
+    <b-table striped hover :items="items"></b-table>
   </section>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        dismissSecs: 10,
-        dismissCountDown: 0,
-        showDismissibleAlert: false
-      }
-    },
-    methods: {
-      countDownChanged(dismissCountDown) {
-        this.dismissCountDown = dismissCountDown
-      },
-      showAlert() {
-        this.dismissCountDown = this.dismissSecs
-      }
+export default {
+  data() {
+    return {
+      items: [
+        {
+          "ФИО": this.$store.state.form.name,
+          "Возраст": this.$store.state.form.age,
+          "Дата приема": this.$store.state.form.calendar,
+          "Время приема": this.$store.state.form.time,
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style lang="less" scope>
+@import "../scss/variables.less";
+.section--result {
+  .result__container {
+    margin-bottom: 2em;
+    background: @color-green;
+    border-radius: 20px;
+    padding: 0.5em 1em;
+    
+    .result__text {
+      color: @color-white;
     }
   }
-</script>
+}
+</style>

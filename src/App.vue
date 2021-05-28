@@ -21,7 +21,9 @@ export default {};
 <style lang="less">
 @import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css';
 @import "./scss/animation.less";
+@import "./scss/normalaze.less";
 @import "./scss/variables.less";
+@import "./scss/adaptive.less";
 
 #app {
   font-family: Helvetica, Arial, sans-serif;
@@ -36,6 +38,7 @@ export default {};
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  overflow: hidden;
 
   .section {
     max-width: @section-max-width;

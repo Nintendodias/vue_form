@@ -1,0 +1,32 @@
+@media (max-width: 480px) {
+  #app {
+    overflow-y: auto !important;
+  }
+  .section {
+    margin: 0 1em;
+  }
+
+  table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    * {
+      width: 100%;
+      display: block;
+    }
+
+    td,
+    th {
+      border: 1px solid #000;
+    }
+
+    & > thead {
+      width: 30%;
+    }
+
+    & > tbody {
+      width: 70%;
+    }
+  }
+}
