@@ -11,6 +11,7 @@ export default new Vuex.Store({
       calendar: "",
       age: "",
     },
+    isFormSuccess: false
   },
   mutations: {
     addFormData(state, {name, time, calendar, age}) {
@@ -18,6 +19,10 @@ export default new Vuex.Store({
       state.form.time = time;
       state.form.calendar = calendar;
       state.form.age = age;
+    },
+    successFormRquest(state, successRequest) {
+      console.log(successRequest)
+      state.isFormSuccess = successRequest;
     }
   }
 });

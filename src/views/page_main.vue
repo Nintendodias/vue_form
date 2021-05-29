@@ -93,6 +93,7 @@ import Vue from "vue";
 //VeeValidate
 import VeeValidate from "vee-validate";
 import { Validator } from "vee-validate"; //for custom rule
+import axios from "axios";
 
 Vue.use(VeeValidate, {
   classes: true,
@@ -122,27 +123,27 @@ function fioLength(value) {
 }
 //end custom rule for name
 
-//change rule's language 
+//change rule's language
 
 const dictionary = {
   ru: {
     messages: {
-      required: 'Вы забыли заполнить поле',
-      fio: 'Введите свое Имя, Фамилию и Отчество (необязательно)',
-      alpha_spaces: 'В этом поле можно вводить только буквы и пробелы',
-      between: 'Введите число от 0 до 150, если вам больше, извините, мы рады предоставить услуги героям',
-      
-    }
-  }
+      required: "Вы забыли заполнить поле",
+      fio: "Введите свое Имя, Фамилию и Отчество (необязательно)",
+      alpha_spaces: "В этом поле можно вводить только буквы и пробелы",
+      between:
+        "Введите число от 0 до 150, если вам больше, извините, мы рады предоставить услуги героям",
+    },
+  },
 };
 
 Validator.localize(dictionary);
 
-const validator = new Validator({ name: 'required' });
+const validator = new Validator({ name: "required" });
 
-validator.localize('ru');
+validator.localize("ru");
 
-//end change rule's language 
+//end change rule's language
 
 export default {
   data() {
@@ -183,6 +184,7 @@ export default {
       this.$validator.validateAll().then((result) => {
         if (result) {
           this.addToState();
+          this.sendRequest();
           this.$router.push({ name: "PageResults" });
           return;
         }
@@ -196,6 +198,19 @@ export default {
         calendar: this.form.calendar,
         age: this.form.age,
       });
+    },
+    sendRequest() {
+      axios
+        .post("https://httpbin.org/post", this.form)
+        .then((response) => {
+          this.$store.commit("successFormRquest", true);
+          console.log('success')
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log('error')
+          console.error(error);
+        });
     },
     validateState(ref) {
       if (
