@@ -20,8 +20,7 @@ export default new Vuex.Store({
       state.form.calendar = calendar;
       state.form.age = age;
     },
-    successFormRquest(state, successRequest) {
-      console.log(successRequest)
+    successFormRequest(state, successRequest) {
       state.isFormSuccess = successRequest;
     }
   }

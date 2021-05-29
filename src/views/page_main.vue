@@ -203,12 +203,12 @@ export default {
       axios
         .post("https://httpbin.org/post", this.form)
         .then((response) => {
-          this.$store.commit("successFormRquest", true);
-          console.log('success')
+          this.$store.commit("successFormRequest", true);
+          console.log("success");
           console.log(response.data);
         })
         .catch((error) => {
-          console.log('error')
+          console.log("error");
           console.error(error);
         });
     },
