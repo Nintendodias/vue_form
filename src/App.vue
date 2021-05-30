@@ -15,7 +15,9 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.use(BootstrapVue);
 
-export default {};
+export default {
+  name: "App",
+};
 </script>
 
 <style lang="less">
